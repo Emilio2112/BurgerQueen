@@ -1,6 +1,6 @@
-const { response } = require("express");
 const UserModel = require("../models/users.model");
-const { handleError } = require("../utils");
+const bcrypt = require('bcrypt')
+
 
 module.exports = {
   getUserById,
@@ -20,11 +20,11 @@ function updateUser(req, res) {
   res.locals.user
     .save()
     .then((response) => res.json(response))
-    .catch((err) => handleError(err, res));
+    .catch((err) => res.json(err));
 }
 
 function deleteUserById(req, res) {
   UserModel.findByIdAndDelete(res.locals.user.id )
     .then((response) => res.json(response))
-    .catch((err) => handleError(err, res));
+    .catch((err) => res.json(err));
 }
