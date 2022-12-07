@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 require('dotenv').config()
 
 const app = express();
-const router = require("./api/routers");
+const router = require("./api/routers/index");
 
 //Create funtion DB connection
 const mongooseStart = async () => {
@@ -13,7 +13,7 @@ const mongooseStart = async () => {
         await mongoose.connect(
             process.env.MONGO_URL || "mongodb://localhost:27017/",
             {
-                dbName: process.env.MONGO_DB || "burgerqueen",
+                dbName: process.env.MONGO_DB || "BurgerQueen",
             }
         );
         console.log("Connected to DB");
