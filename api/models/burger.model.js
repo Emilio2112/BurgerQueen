@@ -1,5 +1,5 @@
 const mongoose = require("mongoose")
-const userSchema = require('./user.model')
+const userSchema = require('./coments.model')
 
 
 const burgerSchema = new mongoose.Schema({
