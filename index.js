@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 require('dotenv').config()
 
 const app = express();
-const router = require("./api/routers/router");
+const router = require("./api/routers");
 
 //Create funtion DB connection
 const mongooseStart = async () => {
