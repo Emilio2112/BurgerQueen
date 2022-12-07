@@ -7,8 +7,8 @@ const {
   updateUser,
 } = require("../controllers/users.controller");
 
-router.get("/:email", authUser, getUserById);
-router.put("/:email", authUser, updateUser);
-router.delete("/:email", authUser, deleteUserById);
+router.get("/profile", authUser, getUserById);
+router.put("/profile", authUser, updateUser);
+router.delete("/profile", authUser, deleteUserById);
 
 module.exports = router;

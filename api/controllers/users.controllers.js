@@ -1,3 +1,4 @@
+const { response } = require("express");
 const UserModel = require("../models/users.model");
 const { handleError } = require("../utils");
 
@@ -8,21 +9,22 @@ module.exports = {
 };
 
 function getUserById(req, res) {
-  UserModel.findById(req.params.id)
+    res.json(res.locals.user)
+}
+
+function updateUser(req, res) {
+  if (req.body.password) {
+    req.body.password = bcrypt.hashSync(req.body.password, 10);
+  }
+  res.locals.user = req.body;
+  res.locals.user
+    .save()
     .then((response) => res.json(response))
     .catch((err) => handleError(err, res));
 }
 
-function updateUser(req, res) {
-  UserModel.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-    runValidators: true,
-  })
-    .then((response) => res.json(response))
-    .catch((err) => handleError(err, res));
-}
 function deleteUserById(req, res) {
-  UserModel.remove({ _id: req.params.id })
+  UserModel.findByIdAndDelete(res.locals.user.id )
     .then((response) => res.json(response))
     .catch((err) => handleError(err, res));
 }
