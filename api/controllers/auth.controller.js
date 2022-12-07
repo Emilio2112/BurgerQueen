@@ -6,7 +6,7 @@ const UserModel = require('../models/user.model')
 async function signup (req, res) {
   try {
     req.body.password = bcrypt.hashSync(req.body.password, 10)
-    req.body.role = "client"
+    req.body.role = "user"
     const user = await UserModel.create(req.body)
     const payload = { email: user.email }
     
