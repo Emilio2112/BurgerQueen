@@ -29,8 +29,7 @@ const burgerSchema = new mongoose.Schema({
         user: [userSchema]
     }],
     rating: [{
-        type: Number,
-        required: true
+        type: Number
     }]
 })
 
