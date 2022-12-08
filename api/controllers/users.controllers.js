@@ -13,12 +13,14 @@ function getUserById(req, res) {
 }
 
 function updateUser(req, res) {
+  const users= res.locals.user
   if (req.body.password) {
     req.body.password = bcrypt.hashSync(req.body.password, 10);
   }
-  res.locals.user = req.body;
-  res.locals.user
-    .save()
+  UserModel
+  .findByIdAndUpdate(users, req.body, {
+    new: true
+  })
     .then((response) => res.json(response))
     .catch((err) => res.json(err));
 }
