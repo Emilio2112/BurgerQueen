@@ -13,10 +13,10 @@ const {
   getRestaurantBurgers
 } = require('../controllers/restaurants.controller')
 
-router.get('/:id', authUser, getRestaurantBurgers)
-router.post('/', authUser, addRestaurant)
-router.put('/:id', authUser, updateRestaurant)
-router.delete('/:id', authUser, deleteRestaurant)
+router.get('/:id', authUser, adminCheck, getRestaurantBurgers)
+router.post('/', authUser, adminCheck, addRestaurant)
+router.put('/:id', authUser, adminCheck, updateRestaurant)
+router.delete('/:id', authUser, adminCheck, deleteRestaurant)
 
 
 module.exports = router
