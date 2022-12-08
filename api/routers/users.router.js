@@ -10,7 +10,7 @@ const {
 
 router.get("/profile", authUser, getUserById);
 router.post('/admin',authUser,adminCheck,createUser);
-router.put("/profile",adminCheck, updateUser);
+router.put("/profile",authUser,adminCheck, updateUser);
 router.delete("/profile", authUser, deleteUserById);
 
 module.exports = router;
