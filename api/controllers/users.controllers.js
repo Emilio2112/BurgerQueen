@@ -6,6 +6,7 @@ module.exports = {
   getUserById,
   deleteUserById,
   updateUser,
+  createUser
 };
 
 function getUserById(req, res) {
@@ -29,4 +30,13 @@ function deleteUserById(req, res) {
   UserModel.findByIdAndDelete(res.locals.user.id )
     .then((response) => res.json(response))
     .catch((err) => res.json(err));
+}
+
+function createUser(req,res){
+  if (req.body.password) {
+    req.body.password = bcrypt.hashSync(req.body.password, 10);
+  }
+  UserModel.create(req.body)
+  .then((user)=> res.json(user))
+  .catch((err) => res.json(err))
 }
