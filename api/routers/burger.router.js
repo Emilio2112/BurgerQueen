@@ -17,4 +17,6 @@ router.get('/style/:style',getBurgerByStyle)
 router.get('/:id',getBurger)
 router.post('/',authUser,adminCheck,createBurger)
 
+
 module.exports = router
+
