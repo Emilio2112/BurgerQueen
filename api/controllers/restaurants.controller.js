@@ -22,7 +22,7 @@ function deleteRestaurant(req, res) {
 function getRestaurantBurgers(req, res) {
   Restaurants.findById(req.params.id)
     .populate("burgers")
-    .then((result) => res.json(result))
+    .then((result) => res.json(result.burgers))
     .catch((err) => res.json(err));
 }
 

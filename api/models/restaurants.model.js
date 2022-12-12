@@ -22,7 +22,7 @@ const restaurantSchema = new mongoose.Schema({
     required: true,
     unique: [true, 'This phone is registered']
   },
-  burguers: [
+  burgers: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "burger",
