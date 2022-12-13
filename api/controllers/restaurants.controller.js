@@ -26,8 +26,15 @@ function getRestaurant(req, res) {
     .catch((err) => res.json(err));
 }
 
+function getRestaurantBurgers(req, res) {
+  Restaurants.findById(req.params.id)
+    .populate("burgers")
+    .then((result) => res.json(result.burgers))
+    .catch((err) => res.json(err));
+}
+
 function getRestaurants(req, res) {
-  Restaurants.findOne(req.params.id)
+  Restaurants.find(req.query)
     .then((result) => res.json(result))
     .catch((err) => res.json(err));
 }
@@ -38,4 +45,5 @@ module.exports = {
   deleteRestaurant,
   getRestaurants,
   getRestaurant,
+  getRestaurantBurgers
 };
