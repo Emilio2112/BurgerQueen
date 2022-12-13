@@ -10,12 +10,14 @@ const {
   addRestaurant,
   updateRestaurant,
   deleteRestaurant,
-  getRestaurantBurgers,
-  getRestaurant
+  getRestaurant,
+  getRestaurants,
+  getRestaurantBurgers
 } = require('../controllers/restaurants.controller')
 
-router.get('/',  getRestaurant)
-router.get('/:id', authUser, adminCheck, getRestaurantBurgers)
+router.get('/',  getRestaurants)
+router.get('/:id', getRestaurant)
+router.get('/restaurant/:id', getRestaurantBurgers)
 router.post('/', authUser, adminCheck, addRestaurant)
 router.put('/:id', authUser, adminCheck, updateRestaurant)
 router.delete('/:id', authUser, adminCheck, deleteRestaurant)

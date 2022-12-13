@@ -19,14 +19,21 @@ function deleteRestaurant(req, res) {
     .catch((err) => res.json(err));
 }
 
-function getRestaurantBurgers(req, res) {
+function getRestaurant(req, res) {
   Restaurants.findById(req.params.id)
     .populate("burgers")
     .then((result) => res.json(result))
     .catch((err) => res.json(err));
 }
 
-function getRestaurant(req, res) {
+function getRestaurantBurgers(req, res) {
+  Restaurants.findById(req.params.id)
+    .populate("burgers")
+    .then((result) => res.json(result.burgers))
+    .catch((err) => res.json(err));
+}
+
+function getRestaurants(req, res) {
   Restaurants.find(req.query)
     .then((result) => res.json(result))
     .catch((err) => res.json(err));
@@ -36,6 +43,7 @@ module.exports = {
   addRestaurant,
   updateRestaurant,
   deleteRestaurant,
-  getRestaurantBurgers,
+  getRestaurants,
   getRestaurant,
+  getRestaurantBurgers
 };
