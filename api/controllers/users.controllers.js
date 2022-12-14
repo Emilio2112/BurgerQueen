@@ -7,9 +7,10 @@ module.exports = {
   deleteUserById,
   updateUser,
   createUser,
-  getFavoriteBurguer,
+  getFavoriteBurger,
   createFavoriteBurger,
   updateFavoriteBurger,
+  getFavorite
 };
 
 function getUserById(req, res) {
@@ -43,7 +44,7 @@ function createUser(req, res) {
     .catch((err) => res.json(err));
 }
 
-function getFavoriteBurguer(req, res) {
+function getFavoriteBurger(req, res) {
   UserModel.findById(res.locals.user.id)
     .populate("favorites")
     .then((result) => res.json(result.favorites))
@@ -62,16 +63,18 @@ function createFavoriteBurger(req, res) {
 }
 
 function updateFavoriteBurger(req, res) {
-  console.log(user.favorites);
   UserModel.findById(res.locals.user.id)
-    .populate("favorites")
-    .then((user) => {
-      console.log(user.favorites);
-      let index = user.favorites.indexOf(favorites.id);
-      console.log(index);
-      user.favorites.splice(index, 1);
-      user.save();
-      res.json(favorites);
-    })
+  .then(user => {
+    let index = user.favorites.indexOf(req.body.id)
+    user.favorites.splice(index, 1)
+    user.save()
+    res.json(user)
+  })
+    .catch((err) => res.json(err));
+}
+
+function getFavorite(req, res) {
+  UserModel.findById(res.locals.user.id)
+    .then((result) => res.json(result.favorites))
     .catch((err) => res.json(err));
 }
