@@ -46,7 +46,7 @@ function createUser(req, res) {
 
 function getFavoriteBurger(req, res) {
   UserModel.findById(res.locals.user.id)
-    .populate("favorites")
+    .populate({path:"favorites",populate:{path:"restaurant"}})
     .then((result) => res.json(result.favorites))
     .catch((err) => res.json(err));
 }
