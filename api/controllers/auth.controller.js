@@ -9,7 +9,7 @@ async function signup (req, res) {
     const user = await UserModel.create(req.body)
     const payload = { email: user.email }
     
-    const token = jwt.sign(payload, process.env.SECRET, { expiresIn: '1h' })
+    const token = jwt.sign(payload, process.env.SECRET, { expiresIn: '10h' })
 
     res.status(200).json({ email: user.email, token }) // token: token
   } catch (error) {
