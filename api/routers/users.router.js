@@ -13,8 +13,8 @@ const {
 } = require("../controllers/users.controllers");
 
 router.get("/profile", authUser, getUserById);
-router.post("/admin", authUser, adminCheck, createUser);
-router.put("/profile", authUser, adminCheck, updateUser);
+router.post('/admin',authUser,adminCheck,createUser);
+router.put("/profile",authUser, updateUser);
 router.delete("/profile", authUser, deleteUserById);
 router.get("/favorite", authUser, getFavoriteBurger);
 router.get("/favorite/burger", authUser,getFavorite)
