@@ -28,10 +28,12 @@ const userSchema = new mongoose.Schema({
     type: Array,
     required: false,
   },
-  favoritas: {
-    type: Array,
-    required: false,
-  },
+  favorites: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "burger",
+    },
+  ],
 });
 
 const userModel = mongoose.model("user", userSchema);
